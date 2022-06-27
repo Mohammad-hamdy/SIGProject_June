@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -32,7 +33,11 @@ public class MyController implements ActionListener, ListSelectionListener {
             try {
                 fileOperations.loadFiles();
             } catch (Exception ex) {
-                ex.printStackTrace();
+              
+                JOptionPane.showMessageDialog(frame, "Please Make Sure to:"+"\n"+"1.select the right format(.CSV)"
+                       +"\n"+"2.select the right date formate"+"\n"+"3.Make sure of the file existance", 
+                        "Load File Error", JOptionPane.ERROR_MESSAGE);
+
             }
         } else if (e.getActionCommand().equals("S")) {
             fileOperations.saveData();
