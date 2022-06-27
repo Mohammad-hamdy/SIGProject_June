@@ -6,10 +6,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Noha_Nabil_Nagah
- */
 public class InvHeaderDialog extends JDialog {
 
     private JLabel custNameLabel;
@@ -20,7 +16,7 @@ public class InvHeaderDialog extends JDialog {
     private JButton insertBtn;
     private JButton cancelBtn;
 
-    public InvHeaderDialog(SalesFrame sf) {
+    public InvHeaderDialog(SIGFrame sf) {
         super.setTitle("Create New Invoice");
         
         custNameLabel = new JLabel("Customer Name: ");
@@ -34,8 +30,8 @@ public class InvHeaderDialog extends JDialog {
         insertBtn.setActionCommand("creatInvOK");
         cancelBtn.setActionCommand("creatInvCancel");
 
-        insertBtn.addActionListener(sf.getController());
-        cancelBtn.addActionListener(sf.getController());
+        insertBtn.addActionListener(sf.getMyController());
+        cancelBtn.addActionListener(sf.getMyController());
 
         setLayout(new GridLayout(3, 2));
         

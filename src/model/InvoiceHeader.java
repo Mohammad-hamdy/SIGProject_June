@@ -1,55 +1,55 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class InvoiceHeader {
-    private int id;
-    private String customerName;
-    private String date;
+
+    private int invNum;
+    private String cusName;
+    private Date invDate;
     private ArrayList<InvoiceLine> lines;
-    
-    public InvoiceHeader(int id, String customerName, String date) {
-        this.id = id;
-        this.customerName = customerName;
-        this.date = date;
+
+    public InvoiceHeader(int invNum, String cusName, Date invDate) {
+        this.invNum = invNum;
+        this.cusName = cusName;
+        this.invDate = invDate;
     }
 
-    public String getDate() {
-        return date;
+    public int getInvNum() {
+        return invNum;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setInvNum(int invNum) {
+        this.invNum = invNum;
     }
 
-    public int getId() {
-        return id;
+    public Date getInvDate() {
+        return invDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setInvDate(Date invDate) {
+        this.invDate = invDate;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getCusName() {
+        return cusName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCusName(String cusName) {
+        this.cusName = cusName;
     }
-
-    public double getInvoiceTotal() {
-        double total = 0;
-        for (InvoiceLine line : getLines()) {
-            total += line.getLineTotal();
-        }
-        return total;
-    }
-
+  
     @Override
     public String toString() {
-        return "InvoiceHeader{" + "id=" + id + ", customerName=" + customerName + ", date=" + date + '}';
-    }
+        String str = "InvoiceHeader{" + "invNum=" + invNum + ", customerName=" + cusName + ", invDate=" + invDate + '}';
+        for (InvoiceLine line : getLines()) {
+            str += "\n\t" + line;
+        }
+        return str;
+    } 
 
     public ArrayList<InvoiceLine> getLines() {
         if (lines == null) {
@@ -57,8 +57,25 @@ public class InvoiceHeader {
         }
         return lines;
     }
+
+    public void setLines(ArrayList<InvoiceLine> lines) {
+        this.lines = lines;
+    }
     
+        public double getInvTotal() {
+        double total = 0.0;
+        for (InvoiceLine line : getLines()) {
+            total += line.getLineTotal();
+        }
+        return total;
+    }
     
+    public void addLine(InvoiceLine line) {
+        getLines().add(line);
+    }
     
-    
+        public String getDataAsCSV() {
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        return "" + getInvNum() + "," + df.format(getInvDate()) + "," + getCusName();
+    }
 }

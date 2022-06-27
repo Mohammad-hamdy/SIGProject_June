@@ -1,19 +1,29 @@
 package model;
 
-import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.InvoiceHeader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
+public class InvoiceHeaderTableModel extends DefaultTableModel {
 
-public class InvoiceHeaderTableModel extends AbstractTableModel {
-    private ArrayList<InvoiceHeader> data;
-    private String[] cols = {"Id", "Customer Name", "Invoice Date"};
+    String[] cols = {"No.", "Invoice Date", "Customer Name", "Total"};
+    ArrayList<InvoiceHeader> data;
+        private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+
 
     public InvoiceHeaderTableModel(ArrayList<InvoiceHeader> data) {
+        this.cols = cols;
         this.data = data;
     }
-    
+
     @Override
     public int getRowCount() {
+        if (this.data == null) {
+            data = new ArrayList<>();
+        }
         return data.size();
     }
 
@@ -24,14 +34,16 @@ public class InvoiceHeaderTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        InvoiceHeader header = data.get(rowIndex);
+        InvoiceHeader row = data.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return header.getId();
+            return row.getInvNum();
             case 1:
-                return header.getCustomerName();
+            return row.getCusName();
             case 2:
-                return header.getDate();
+            return df.format(row.getInvDate());
+            case 3:
+                return row.getInvTotal();
         }
         return "";
     }
@@ -40,7 +52,19 @@ public class InvoiceHeaderTableModel extends AbstractTableModel {
     public String getColumnName(int column) {
         return cols[column];
     }
+
+    public ArrayList<InvoiceHeader> getData() {
+        return data;
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
+    }
     
-    
-    
+    @Override
+    public void removeRow(int row) {
+        data.remove(row);
+    }
+
 }

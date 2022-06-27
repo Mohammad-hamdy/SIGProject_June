@@ -1,24 +1,18 @@
 package model;
 
-public class InvoiceLine {
+public class InvoiceLine  {
     private String itemName;
-    private double unitPrice;
-    private int count;
-    private InvoiceHeader header;
+    private double itemPrice;
+    private int itemCount;
+    private double itemTotal;
+    private InvoiceHeader invoiceHeader;
 
-    public InvoiceLine(String itemName, double unitPrice, int count, InvoiceHeader header) {
+    public InvoiceLine(String itemName, double itemPrice, int count, InvoiceHeader invoiceHeader) {
         this.itemName = itemName;
-        this.unitPrice = unitPrice;
-        this.count = count;
-        this.header = header;
-    }
-
-    public InvoiceHeader getHeader() {
-        return header;
-    }
-
-    public void setHeader(InvoiceHeader header) {
-        this.header = header;
+        this.itemPrice = itemPrice;
+        this.itemCount = count;
+        this.invoiceHeader = invoiceHeader;
+        this.setItemTotal(this.itemCount * this.itemPrice); 
     }
 
     public String getItemName() {
@@ -29,33 +23,50 @@ public class InvoiceLine {
         this.itemName = itemName;
     }
 
-    public double getUnitPrice() {
-        return unitPrice;
+    public double getItemPrice() {
+        return itemPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setItemPrice(double itemPrice) {
+        this.itemPrice = itemPrice;
     }
 
-    public int getCount() {
-        return count;
+    public int getItemCount() {
+        return itemCount;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setItemCount(int itemCount) {
+        this.itemCount = itemCount;
     }
 
-    public double getLineTotal() {
-        return count * unitPrice;
+    public double getItemTotal() {
+        return itemTotal;
     }
 
+    public void setItemTotal(double itemTotal) {
+        this.itemTotal = itemTotal;
+    }
+
+    public InvoiceHeader getInvoiceHeader() {
+        return invoiceHeader;
+    }
+
+    public void setInvoiceHeader(InvoiceHeader invoiceHeader) {
+        this.invoiceHeader = invoiceHeader;
+    }
+
+    
     @Override
     public String toString() {
-        return "InvoiceLine{" + "itemName=" + itemName + ", unitPrice=" + unitPrice + ", count=" + count + ", lineTotal=" + getLineTotal() + '}';
+        return "InvoiceLine{" + "itemName=" + itemName + ", itemprice=" + itemPrice + ", itemCount=" + itemCount + '}';
     }
-
     
+    public double getLineTotal() {
+        return itemCount * itemPrice;
+    }
     
-    
-    
+    public String getDataAsCSV() {
+        return "" + getInvoiceHeader().getInvNum() + "," + getItemName() + "," + getItemPrice() + "," + getItemCount();
+    }
 }
+

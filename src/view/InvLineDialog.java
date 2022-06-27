@@ -6,9 +6,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-/**
- * @author Noha_Nabil_Nagah
- */
 public class InvLineDialog extends JDialog {
 
     private JLabel itemNameLabel;
@@ -22,7 +19,7 @@ public class InvLineDialog extends JDialog {
     private JButton insertBtn;
     private JButton cancelBtn;
 
-    public InvLineDialog(SalesFrame sF) {
+    public InvLineDialog(SIGFrame sF) {
         super.setTitle("Insert New Item");
         
         itemNameLabel = new JLabel("Item Name: ");
@@ -40,8 +37,8 @@ public class InvLineDialog extends JDialog {
         insertBtn.setActionCommand("creatLineOK");
         cancelBtn.setActionCommand("creatLineCancel");
 
-        insertBtn.addActionListener(sF.getController());
-        cancelBtn.addActionListener(sF.getController());
+        insertBtn.addActionListener(sF.getMyController());
+        cancelBtn.addActionListener(sF.getMyController());
 
         setLayout(new GridLayout(4, 2));
         

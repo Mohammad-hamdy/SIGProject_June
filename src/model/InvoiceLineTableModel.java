@@ -2,44 +2,70 @@ package model;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import model.InvoiceLine;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
-public class InvoiceLineTableModel extends AbstractTableModel {
+public class InvoiceLineTableModel extends DefaultTableModel {
 
-    private ArrayList<InvoiceLine> data;
-    private String[] cols = {"Item Name", "Unit Price", "Count"};
+    private ArrayList<InvoiceLine> invoiceLines;
+    private DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+    String[] cols = {"Item Name", "Item Price", "Count", "Line Total"};
+    
 
-    public InvoiceLineTableModel(ArrayList<InvoiceLine> data) {
-        this.data = data;
+    public InvoiceLineTableModel(ArrayList<InvoiceLine> invoiceLines) {
+        this.invoiceLines = invoiceLines;
+    }
+
+        public ArrayList<InvoiceLine> getInvoiceLines() {
+        return invoiceLines;
     }
     
     @Override
     public int getRowCount() {
-        return data.size();
+        if (this.invoiceLines == null) {
+            invoiceLines = new ArrayList<>();
+        }
+        return invoiceLines.size();
     }
 
-    @Override
-    public int getColumnCount() {
+        @Override
+        public int getColumnCount() {
         return cols.length;
     }
 
+        
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        InvoiceLine line = data.get(rowIndex);
-        switch(columnIndex) {
-            case 0:
-                return line.getItemName();
-            case 1:
-                return line.getUnitPrice();
-            case 2:
-                return line.getCount();
-        }
-        return "";
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
+    }
+        
+        
+    @Override
+        public Object getValueAt(int rowIndex, int columnIndex) {
+        InvoiceLine row = invoiceLines.get(rowIndex);
+        
+        switch (columnIndex) {
+          case 0: return row.getItemName();
+          case 1: return row.getItemPrice();
+          case 2: return row.getItemCount();
+          case 3: return row.getItemTotal();
+        default:
+                return "";
+        } 
     }
 
     @Override
-    public String getColumnName(int column) {
+        public String getColumnName(int column) {
         return cols[column];
     }
-    
+
+
+    @Override
+        public void removeRow(int row) {
+        invoiceLines.remove(row);
+    }
     
 }
