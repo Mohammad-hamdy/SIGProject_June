@@ -6,9 +6,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-/**
- * @author Noha_Nabil_Nagah
- */
 public class InvLineDialog extends JDialog {
 
     private JLabel itemNameLabel;
