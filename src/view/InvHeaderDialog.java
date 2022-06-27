@@ -6,10 +6,6 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-/**
- *
- * @author Noha_Nabil_Nagah
- */
 public class InvHeaderDialog extends JDialog {
 
     private JLabel custNameLabel;
