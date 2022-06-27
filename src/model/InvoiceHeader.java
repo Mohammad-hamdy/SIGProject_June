@@ -1,53 +1,62 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class InvoiceHeader {
-    
-    private int invoiceNum;
-    private Date invoiceDate;
-    private String cstName;
+    private int id;
+    private String customerName;
+    private String date;
     private ArrayList<InvoiceLine> lines;
-
-    public InvoiceHeader(int invoiceNum, Date invoiceDate, String cstName) {
-        this.invoiceNum = invoiceNum;
-        this.invoiceDate = invoiceDate;
-        this.cstName = cstName;
+    
+    public InvoiceHeader(int id, String customerName, String date) {
+        this.id = id;
+        this.customerName = customerName;
+        this.date = date;
     }
 
-    public String getCstName() {
-        return cstName;
+    public String getDate() {
+        return date;
     }
 
-    public void setCstName(String cstName) {
-        this.cstName = cstName;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public int getInvoiceNum() {
-        return invoiceNum;
+    public int getId() {
+        return id;
     }
 
-    public void setInvoiceNum(int invoiceNum) {
-        this.invoiceNum = invoiceNum;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Date getInvoiceDate() {
-        return invoiceDate;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setInvoiceDate(Date invoiceDate) {
-        this.invoiceDate = invoiceDate;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public double getInvoiceTotal() {
+        double total = 0;
+        for (InvoiceLine line : getLines()) {
+            total += line.getLineTotal();
+        }
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceHeader{" + "id=" + id + ", customerName=" + customerName + ", date=" + date + '}';
     }
 
     public ArrayList<InvoiceLine> getLines() {
+        if (lines == null) {
+            lines = new ArrayList<>();
+        }
         return lines;
     }
-
-    public void setLines(ArrayList<InvoiceLine> lines) {
-        this.lines = lines;
-    }
-    
     
     
     

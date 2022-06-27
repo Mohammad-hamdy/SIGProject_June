@@ -1,33 +1,24 @@
 package model;
 
 public class InvoiceLine {
-    
-    private InvoiceHeader invoice;
     private String itemName;
-    private double price;
+    private double unitPrice;
     private int count;
+    private InvoiceHeader header;
 
-    public InvoiceLine(InvoiceHeader invoice, String itemName, double price, int count) {
-        this.invoice = invoice;
+    public InvoiceLine(String itemName, double unitPrice, int count, InvoiceHeader header) {
         this.itemName = itemName;
-        this.price = price;
+        this.unitPrice = unitPrice;
         this.count = count;
+        this.header = header;
     }
 
-    public int getCount() {
-        return count;
+    public InvoiceHeader getHeader() {
+        return header;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public InvoiceHeader getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(InvoiceHeader invoice) {
-        this.invoice = invoice;
+    public void setHeader(InvoiceHeader header) {
+        this.header = header;
     }
 
     public String getItemName() {
@@ -38,14 +29,33 @@ public class InvoiceLine {
         this.itemName = itemName;
     }
 
-    public double getPrice() {
-        return price;
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
-     
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public double getLineTotal() {
+        return count * unitPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceLine{" + "itemName=" + itemName + ", unitPrice=" + unitPrice + ", count=" + count + ", lineTotal=" + getLineTotal() + '}';
+    }
+
+    
+    
     
     
 }

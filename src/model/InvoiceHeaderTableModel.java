@@ -3,23 +3,20 @@ package model;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-public class InvoiceHeaderTableModel extends AbstractTableModel{
 
-    private ArrayList<InvoiceHeader> invoiceHeaderData;
+public class InvoiceHeaderTableModel extends AbstractTableModel {
+    private ArrayList<InvoiceHeader> data;
     private String[] cols = {"Id", "Customer Name", "Invoice Date"};
-    
-    //Contructor 
+
     public InvoiceHeaderTableModel(ArrayList<InvoiceHeader> data) {
-        
-        this.invoiceHeaderData= data;
+        this.data = data;
     }
     
     @Override
-    //Get the number of row method
     public int getRowCount() {
-        return invoiceHeaderData.size();
+        return data.size();
     }
-    //Get the number of row method
+
     @Override
     public int getColumnCount() {
         return cols.length;
@@ -27,26 +24,23 @@ public class InvoiceHeaderTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        
-        InvoiceHeader header = invoiceHeaderData.get(rowIndex);
+        InvoiceHeader header = data.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return header.getInvoiceNum();
-                
+                return header.getId();
             case 1:
-                return header.getInvoiceDate();
+                return header.getCustomerName();
             case 2:
-                return header.getCstName();  
-           
+                return header.getDate();
         }
         return "";
-        
     }
-    
+
     @Override
     public String getColumnName(int column) {
         return cols[column];
     }
-
+    
+    
     
 }
