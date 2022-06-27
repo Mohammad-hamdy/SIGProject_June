@@ -135,9 +135,9 @@ public class SIGFrame extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        loadFileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        loadFileMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        loadFileMenuItem.setText("Load File");
+        loadFileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        loadFileMenuItem.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        loadFileMenuItem.setText("Open File");
         loadFileMenuItem.setActionCommand("L");
         loadFileMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,8 +147,8 @@ public class SIGFrame extends javax.swing.JFrame {
         jMenu1.add(loadFileMenuItem);
 
         saveFileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        saveFileMenuItem.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        saveFileMenuItem.setText("Save");
+        saveFileMenuItem.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        saveFileMenuItem.setText("Save File");
         saveFileMenuItem.setActionCommand("S");
         saveFileMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
